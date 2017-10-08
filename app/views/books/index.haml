@@ -1,0 +1,27 @@
+%main.container
+  %h1.general-title-margin= t('page.book.index.catalog')
+  .hidden-xs.clearfix
+    .dropdowns.pull-right
+      .dropdown.width-240
+        = render 'filters'
+    %ul.list-inline.pt-10.mb-25.mr-240
+      %li.mr-35
+        = link_to catalog_path, class: 'filter-link' do
+          = t('button.all')
+          %span.badge.general-badge= @categories.sum(&:books_count)
+      = render @categories
+  .dropdowns.mb-25.visible-xs
+    %p.lead.small.mb-10= t('page.book.index.by_category')
+    .dropdown
+      %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+        = t('button.all')
+        %i.fa.fa-angle-down.dropdown-icon.pull-right
+      %ul.dropdown-menu
+        = render @categories
+    %p.lead.small.mb-10= t('page.book.index.sort_by')
+    .dropdown
+      = render 'filters'
+  .mb-120#books-container
+    = group_by4in_row(@books)
+    .text-center
+      = link_to t('button.view_more'), catalog_path(page: @books.current_page + 1, category: @category_id, filter: @filter), id: 'load-more-books', class: 'btn btn-primary', remote: true unless @books.last_page?

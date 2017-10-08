@@ -1,0 +1,7 @@
+#flash-display
+  .container
+    - flash.each do |type, msg|
+      %div{:class => "alert alert-#{type == 'notice' ? 'info' : type} fadeout", 'data-dismiss': 'alert'}
+        %button.close &times;
+        = msg if msg.is_a?(String)
+

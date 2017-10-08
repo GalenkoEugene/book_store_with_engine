@@ -1,0 +1,16 @@
+.col-xs-6.col-sm-3
+  .general-thumb-wrap
+    .thumbnail.general-thumbnail
+      = image_tag img_of(book), alt: book.title, class: 'img-shadow general-thumbnail-img'
+      .thumb-hover
+        .general-thumb-link-wrap
+          = link_to book_path(book), class: 'thumb-hover-link' do
+            %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+          - target = book.active ? { order_item: {quantity: 1, book_id: book.id}} : '#'
+          = link_to order_items_path(target), { method: :post, remote: true, class: 'thumb-hover-link' } do
+            %i.fa.fa-shopping-cart.thumb-icon
+  .general-thumb-info
+    %p.title= book.title
+    %p.font-16.in-gold-500= number_to_currency(book.price)
+    %span.divider-sm
+    %p.lead.small= authors_to_list(book)

@@ -1,0 +1,21 @@
+@import "font-awesome";
+@import "bookstore/variables";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "bookstore/theme";
+@import "bookstore/helpers";
+@import "bookstore/general";
+
+.more_content span {
+    display: none;
+}
+
+.filter-link.active{ /* because in catalog page, 'active' class overridden by someone  */
+  color: black;
+  text-shadow: 0 0 1px rgba(0,0,0,0.2);
+}
+
+a.text-as-link {
+  text-decoration: none;
+  color: rgb(51, 51, 51);
+}

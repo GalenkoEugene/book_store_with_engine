@@ -1,0 +1,34 @@
+machine:
+  ruby:
+    version:
+      2.4.1
+  environment:
+      DEVISE_SECRET: 'secret key is here'
+      AWS_ACCESS_KEY_ID: 'secret id is here'
+      AWS_SECRET_ACCESS_KEY: 'secret access key is here'
+      S3_BUCKET_NAME: 'bucket name is here'
+      SMTP_PORT: 'smtp pert'
+      SMTP_ADDRESS: 'gmail address'
+      SMTP_USER_NAME: 'my name here'
+      SMTP_PASSWORD: 'my password here'
+      DEVISE_SECRET_KEY: 'devise secret here'
+
+dependencies:
+  pre:
+    - gem install bundler
+    - gem install rubygems-bundler
+    - gem regenerate_binstubs
+
+## Customize database setup
+database:
+  override:
+    # replace CircleCI's generated database.yml
+    - cp config/database.ci.yml config/database.yml
+    - bundle exec rails db:create --trace
+    - bundle exec rails db:migrate --trace
+    - bundle exec rails db:migrate RAILS_ENV=test --trace
+
+## Customize test commands
+test:
+  override:
+    - bundle exec rspec spec/ --format doc

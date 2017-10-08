@@ -1,0 +1,47 @@
+%main.container
+  =link_to go_back, class: 'general-back-link' do
+    %i.fa.fa-long-arrow-left.mr-15
+    = t('button.back_to_results')
+  .row
+    .col-sm-6
+      .product-gallery
+        .mb-20
+          = image_tag view_img(@book), alt: "#{@book.title}", class: 'img-responsive'
+        .images.clearfix
+          = small_images(@book)
+    .col-sm-6
+      %h1.mt-res-0= @book.title
+      %p.lead.small= authors_to_list(@book)
+      .row
+        = form_for @order_item, remote: true do |f|
+          .col-xs-12.col-md-4
+            %p.h1.in-gold-500.mt-10= number_to_currency(@book.price)
+          .col-xs-5.col-md-3
+            .input-group.general-position
+              %a.input-link{href: "#"}
+                %i.fa.fa-minus.line-height-40
+              = f.text_field :quantity, value: 1, class: 'form-control quantity-input', min: 1
+              %a.input-link{href: "#"}
+                %i.fa.fa-plus.line-height-40
+          .col-xs-7.col-md-5
+            = f.hidden_field :book_id, value: @book.id
+            = f.submit t('button.add_to_cart'), class: 'btn btn-default pull-right general-position', disabled: !@book.active
+      .general-info-wrap.divider-lg
+        %p= t('page.book.show.description')
+        .lead.small.line-height-2
+          = markdown(@book.description)
+      .general-info-wrap.divider-lg
+        .clearfix
+          %p.pull-left= t('page.book.show.published_at')
+          %p.lead.small.pull-right= @book.published_at
+      .general-info-wrap.divider-lg
+        .clearfix
+          %p.pull-left= t('page.book.show.dimension')
+          %p.lead.small.pull-right= dimension_for(@book)
+      .general-info-wrap.divider-lg
+        .clearfix
+          %p.pull-left= t('page.book.show.materials')
+          %p.lead.small.pull-right= @book.materials
+  .mb-80
+    = render 'reviews/reviews'
+    = render 'reviews/review_form' if current_user

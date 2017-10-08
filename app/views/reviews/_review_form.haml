@@ -1,0 +1,14 @@
+.general-message-wrap.divider.form
+  %h3= t('review.write')
+  = form_for Review.new, html: { id: 'post_review'} do |f|
+    = f.hidden_field :book_id, value: @book.id
+    = f.hidden_field :user_id, value: current_user.id
+    = f.label :score, t('review.score'), class: 'control-label'
+    = f.select :score, (1..5), class: 'rating-loading', id: :review_score
+    .review_score
+    %br
+    = f.label :Review
+    %br
+    = f.text_area :context, class: 'form-control'
+    %br
+    = f.submit t('button.post'), class: 'btn btn-default pull-right'

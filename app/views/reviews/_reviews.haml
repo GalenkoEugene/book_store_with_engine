@@ -1,0 +1,13 @@
+%h3.in-gold-500.mb-25= t('review.reviews') + " (#{@reviews.count})"
+- @reviews.each do |review|
+  .general-message-wrap.divider-lg
+  .clearfix
+    = review.user_avatar
+    .ml-70
+      %div
+        .general-message-date.hidden-xs= review.created_at
+        .max-240
+          .general-message-verified= t('review.verified') if review.verified?
+          .general-message-name= review.user_name
+      = review.book_score
+      %p= review.context

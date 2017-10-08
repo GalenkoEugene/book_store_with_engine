@@ -1,0 +1,10 @@
+%main.container
+  = render 'carousel'
+.container
+  .jumbotron.text-center.mb-0
+    %h2.h1= t('page.home.greeting')
+    .mb-res-50
+      %p= t('page.home.text')
+    = link_to t('button.get_started'), catalog_path ,class: 'button btn btn-default'
+  .mb-35
+    = render 'best_sellers'

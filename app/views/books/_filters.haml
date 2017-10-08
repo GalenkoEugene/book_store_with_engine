@@ -1,0 +1,16 @@
+%a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+  = active_filter
+  %i.fa.fa-angle-down.dropdown-icon.pull-right
+%ul.dropdown-menu
+  %li
+    = link_to t('button.newest_first'), catalog_path(category: @category_id, filter: :newest)
+  %li
+    = link_to t('button.popular_first'), catalog_path(category: @category_id, filter: :popular)
+  %li
+    = link_to t('button.low_to_hight'), catalog_path(category: @category_id, filter: :price_up)
+  %li
+    = link_to t('button.hight_to_low'), catalog_path(category: @category_id, filter: :price_down)
+  %li
+    = link_to t('button.title_A-Z'), catalog_path(category: @category_id, filter: :a_z)
+  %li
+    = link_to t('button.title_Z-A'), catalog_path(category: @category_id, filter: :z_a)

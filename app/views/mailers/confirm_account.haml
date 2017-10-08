@@ -1,0 +1,12 @@
+%h3= t('mailer.thanks')
+%ul
+  %li
+    %em= t('mailer.email') 
+    %strong= @email
+  %li
+    %em= t('mailer.password') 
+    %strong= @password
+%p
+  = link_to t('button.log_in'), @login_url, class: 'button', target: '_blank'
+%br
+%p============================

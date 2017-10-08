@@ -1,0 +1,7 @@
+$('#books-container div:last').before('<%= j(group_by4in_row(@books)) %>');
+
+<% if @books.last_page? %>
+  $('#load-more-books').hide();
+<% else %>
+  $('#load-more-books').attr('href', '<%= catalog_path(page: (@books.current_page+1), category: @category_id, filter: @filter) %>');
+<% end %>

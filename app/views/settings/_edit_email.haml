@@ -1,0 +1,8 @@
+%p.in-gold-500.font-18.mb-25= t('settings.e-mail')
+= form_for(resource, as: resource_name, url: user_path(resource), html: { method: :put, class: 'general-form-md email' }) do |f|
+  .form-group.mb-35
+    = f.label :email, t('settings.enter_e-mail'), class: 'control-label input-label'
+    = f.email_field :email, autofocus: true, autocomplete: "off", class: 'form-control', placeholder: t('settings.enter_your_e-mail')
+    = f.hidden_field :update_email, value: true
+  .general-text-align
+    = f.submit t('settings.save'), class: 'btn btn-default mb-35'
