@@ -22,17 +22,13 @@ class User < ApplicationRecord
   has_many :orders
   has_one :billing
   has_one :shipping
+  has_many :orders, class_name: 'Cartify::Order', foreign_key: :user_id
+  has_one :billing, class_name: 'Cartify::Billing', foreign_key: :user_id
+  has_one :shipping, class_name: 'Cartify::Shipping', foreign_key: :user_id
+  has_many :addresses, class_name: 'Cartify::Address', foreign_key: :user_id
 
   def order_in_progress
     self.orders.where_status('in_progress').first
-  end
-
-  Warden::Manager.after_set_user do |user, auth, opts|
-    order_id = auth.env['rack.session'][:order_id]
-    if order_id && Order.exists?(order_id)
-      @order = Order.find(order_id)
-      @order.update_attribute(:user_id, user.id) unless @order.user_id
-    end
   end
 
   def self.from_omniauth(auth)

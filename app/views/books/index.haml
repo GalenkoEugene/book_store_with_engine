@@ -24,4 +24,4 @@
   .mb-120#books-container
     = group_by4in_row(@books)
     .text-center
-      = link_to t('button.view_more'), catalog_path(page: @books.current_page + 1, category: @category_id, filter: @filter), id: 'load-more-books', class: 'btn btn-primary', remote: true unless @books.last_page?
+      = link_to t('button.view_more'), main_app.catalog_path(page: @books.current_page + 1, category: @category_id, filter: @filter), id: 'load-more-books', class: 'btn btn-primary', remote: true unless @books.last_page?

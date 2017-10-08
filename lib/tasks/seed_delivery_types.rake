@@ -11,7 +11,7 @@ namespace :db do
       ]
 
       deliveries.each do |type|
-        Delivery.find_or_create_by(name: type[0]) do |deliv|
+        Cartify::Delivery.find_or_create_by(name: type[0]) do |deliv|
           deliv.name = type[0]
           deliv.duration = type[1]
           deliv.price = type[2]

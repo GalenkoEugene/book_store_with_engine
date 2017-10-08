@@ -1,3 +1,3 @@
 - @categories&.each do |category|
   %li
-    = link_to category.type_of, catalog_path(category: category), class: 'collapse-link'
+    = link_to category.type_of, main_app.catalog_path(category: category), class: 'collapse-link'

@@ -26,7 +26,7 @@ class Book < ApplicationRecord
 
   accepts_nested_attributes_for :images, allow_destroy: true
 
-  scope :best_sellers, -> { sold_books.group_by(&:type_of).each_value{ |v| v.max_by(&:summed_items) }.map{ |_, v| v.first } }
+  # scope :best_sellers, -> { sold_books.group_by(&:type_of).each_value{ |v| v.max_by(&:summed_items) }.map{ |_, v| v.first } }
   scope :latest, -> { includes(:authors).last 3 }
 
   def self.by_category(cat_id)
