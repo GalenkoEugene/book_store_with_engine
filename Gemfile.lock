@@ -16,11 +16,12 @@ GIT
       sprockets-es6 (>= 0.9.2)
 
 PATH
-  remote: /home/eugene/work/garage/engines/cartify
+  remote: ../cartify
   specs:
     cartify (0.1.0)
       country_select (~> 3.1.1)
       draper (~> 3.0.0)
+      haml
       jquery-rails (~> 4.3.1)
       jquery_mask_rails (~> 0.1.0)
       rails (~> 5.1.4)

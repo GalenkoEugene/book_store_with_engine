@@ -5,4 +5,3 @@ FactoryGirl.define do
     duration 'infinity..'
   end
 end
-

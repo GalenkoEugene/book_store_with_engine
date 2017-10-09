@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require rails-ujs
 //= require bootstrap-sprockets
 //= require cartify/application.js
 //= require_tree .

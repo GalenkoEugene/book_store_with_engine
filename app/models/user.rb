@@ -18,10 +18,6 @@ class User < ApplicationRecord
   }, unless: :skip_password_validation
 
   has_many :reviews
-  has_many :addresses
-  has_many :orders
-  has_one :billing
-  has_one :shipping
   has_many :orders, class_name: 'Cartify::Order', foreign_key: :user_id
   has_one :billing, class_name: 'Cartify::Billing', foreign_key: :user_id
   has_one :shipping, class_name: 'Cartify::Shipping', foreign_key: :user_id

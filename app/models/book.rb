@@ -26,7 +26,7 @@ class Book < ApplicationRecord
 
   accepts_nested_attributes_for :images, allow_destroy: true
 
-  # scope :best_sellers, -> { sold_books.group_by(&:type_of).each_value{ |v| v.max_by(&:summed_items) }.map{ |_, v| v.first } }
+  scope :best_sellers, -> { sold_books.group_by(&:type_of).each_value{ |v| v.max_by(&:summed_items) }.map{ |_, v| v.first } }
   scope :latest, -> { includes(:authors).last 3 }
 
   def self.by_category(cat_id)
@@ -37,12 +37,12 @@ class Book < ApplicationRecord
 
   def self.sold_books
     Book.find_by_sql("SELECT categories.type_of, books.*,
-      SUM(order_items.quantity) AS summed_items FROM books
-      INNER JOIN order_items ON order_items.book_id = books.id
-      INNER JOIN orders ON orders.id = order_items.order_id
-      INNER JOIN order_statuses ON order_statuses.id = orders.order_status_id
+      SUM(cartify_order_items.quantity) AS summed_items FROM books
+      INNER JOIN cartify_order_items ON cartify_order_items.product_id = books.id
+      INNER JOIN cartify_orders ON cartify_orders.id = cartify_order_items.order_id
+      INNER JOIN cartify_order_statuses ON cartify_order_statuses.id = cartify_orders.order_status_id
       INNER JOIN categories ON categories.id = books.category_id
-      WHERE order_statuses.name = 'delivered'
+      WHERE cartify_order_statuses.name = 'delivered'
       GROUP BY books.id, categories.type_of
       ORDER BY summed_items DESC")
   end
