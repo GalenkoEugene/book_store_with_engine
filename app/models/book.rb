@@ -3,11 +3,9 @@
 class Book < ApplicationRecord
   has_many :author_books, dependent: :destroy
   has_many :authors, through: :author_books
-  has_many :order_items, dependent: :nullify
   has_many :reviews, dependent: :destroy
   belongs_to :category
   has_many :images, dependent: :destroy
-  has_many :orders, through: :order_items
   accepts_nested_attributes_for :images, allow_destroy: true
 
   validates :title, :price, :description,

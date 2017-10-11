@@ -28,9 +28,9 @@ class BooksQuery
 
   def popular
     relation.left_outer_joins(orders: [:order_items])
-      .includes(:authors)
-      .group(:id)
-      .order('SUM(order_items.quantity)')
+            .includes(:authors)
+            .group(:id)
+            .order('SUM(order_items.quantity)')
   end
 
   def price_up

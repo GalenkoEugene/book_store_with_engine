@@ -46,7 +46,7 @@ module BookHelper
     return unless book.images[1]
     book.images[1..3].map do |image|
       "<a class='img-link' href='#'>\
-      #{image_tag(image.file.view_size.url , alt: book.title)} </a>"
+      #{image_tag(image.file.view_size.url, alt: book.title)} </a>"
     end.join.html_safe
   end
 

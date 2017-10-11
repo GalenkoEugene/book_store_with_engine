@@ -34,38 +34,4 @@ RSpec.describe Book, type: :model do
     it { expect(subject).to have_many :authors }
     it { expect(subject).to validate_presence_of :category_id }
   end
-
-  describe 'bestsellers' do
-    before do
-      @photo_book = FactoryGirl.create(:book, category_name: 'Photo', title: 'Photo book')
-      @web_book = FactoryGirl.create(:book, category_name: 'Web', title: 'Web book')
-      @design_book = FactoryGirl.create(:book, category_name: 'Design', title: 'Design book')
-      @dev_book = FactoryGirl.create(:book, category_name: 'Dev', title: 'Dev book')
-
-      FactoryGirl.create(:order_item_with_delivered_book,
-        book: FactoryGirl.create(:book, category_name: 'Web')
-      )
-      FactoryGirl.create(:order_item_with_delivered_book,
-        book: FactoryGirl.create(:book, category_name: 'Photo')
-      )
-      FactoryGirl.create(:order_item_with_delivered_book,
-        book: FactoryGirl.create(:book, category_name: 'Design')
-      )
-      FactoryGirl.create(:order_item_with_delivered_book,
-        book: FactoryGirl.create(:book, category_name: 'Dev')
-      )
-
-      FactoryGirl.create_list(:order_item_with_delivered_book, 3, book: @photo_book)
-      FactoryGirl.create_list(:order_item_with_delivered_book, 2, book: @web_book)
-      FactoryGirl.create_list(:order_item_with_delivered_book, 3, book: @design_book)
-      FactoryGirl.create_list(:order_item_with_delivered_book, 2, book: @dev_book)
-      FactoryGirl.create_list(:order_item, 7)
-    end
-
-    it 'return bestsellers in each category' do
-      expect(Book.best_sellers.pluck(:id)).to match_array [
-        @photo_book.id, @web_book.id, @design_book.id, @dev_book.id
-      ]
-    end
-  end
 end

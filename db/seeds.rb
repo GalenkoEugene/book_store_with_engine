@@ -1,13 +1,10 @@
-# frozen_string_literal: true
-
 require 'ffaker'
+
 AuthorBook.delete_all
 Author.delete_all
 Book.delete_all
 Category.delete_all
 Cartify::OrderStatus.delete_all
-Cartify::Order.delete_all
-Cartify::OrderItem.delete_all
 Cartify::Coupon.delete_all
 AdminUser.delete_all
 
@@ -15,8 +12,6 @@ authors, books = [], []
 type_of = ['Mobile development', 'Photo', 'Web design', 'Web development']
 
 type_of.each{ |type| Category.create(type_of: type) }
-
-15.times { authors << { name: FFaker::Book.author } }
 
 95.times do |item|
   books << {
@@ -32,22 +27,20 @@ type_of.each{ |type| Category.create(type_of: type) }
   }
 end
 
+15.times { authors << { name: FFaker::Book.author } }
 authors_in_db = Author.create!(authors)
 
 books.size.times do |item|
   new_book = authors_in_db.sample.books.create!(books[item])
-  # new_book.authors.create!(name: FFaker::Book.author)
   new_book.authors << authors_in_db.sample
 end
 
 statuses = %w[in_progress in_queue in_delivery delivered canceled]
 statuses.each { |status| Cartify::OrderStatus.create(name: status) }
 
-order = Cartify::Order.create!(order_status_id: Cartify::OrderStatus.first.id, total: 33.33, subtotal: 33.33)
-Cartify::OrderItem.create!(total_price: 66.66, quantity: 2, product_id: Book.last.id, unit_price: 33.33, order_id: order.id)
-
 (1..7).each do |coupon|
   Cartify::Coupon.create(name: "D1234567890000#{coupon}", value: "#{coupon}.00".to_f)
 end
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 puts 'Done!'

@@ -1,6 +1,3 @@
-# frozen_string_literal: true
-
-# book
 class BooksController < ApplicationController
   load_and_authorize_resource
   before_action :order_item
