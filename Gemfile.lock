@@ -1,4 +1,20 @@
 GIT
+  remote: git@github.com:GalenkoNeon/cartify.git
+  revision: c6456505ebeb52618bfab07d5189f16286842553
+  branch: dev
+  specs:
+    cartify (0.1.1)
+      country_select (~> 3.1)
+      devise (~> 4.3)
+      draper (~> 3.0)
+      haml-rails (~> 1.0)
+      jquery-rails (~> 4.3, >= 4.3.1)
+      jquery_mask_rails (~> 0.1)
+      rails (~> 5.1, >= 5.1.4)
+      virtus (~> 1.0, >= 1.0.5)
+      wicked (~> 1.3, >= 1.3.2)
+
+GIT
   remote: https://github.com/activeadmin/activeadmin.git
   revision: f28a4e0fb315c5a6a3fb78f423b19562246160a0
   specs:
@@ -98,16 +114,6 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
-    cartify (0.1.0)
-      country_select (~> 3.1)
-      devise (~> 4.3)
-      draper (~> 3.0)
-      haml-rails (~> 1.0)
-      jquery-rails (~> 4.3, >= 4.3.1)
-      jquery_mask_rails (~> 0.1)
-      rails (~> 5.1, >= 5.1.4)
-      virtus (~> 1.0, >= 1.0.5)
-      wicked (~> 1.3, >= 1.3.2)
     coderay (1.1.2)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -441,7 +447,7 @@ DEPENDENCIES
   capybara (~> 2.14.4)
   capybara-webkit
   carrierwave (~> 1.0)
-  cartify (~> 0.1)
+  cartify!
   coffee-rails (~> 4.2)
   database_cleaner
   devise (= 4.3.0)

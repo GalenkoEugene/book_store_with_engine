@@ -6,6 +6,8 @@ class Book < ApplicationRecord
   has_many :reviews, dependent: :destroy
   belongs_to :category
   has_many :images, dependent: :destroy
+  has_many :order_items, class_name: 'Cartify::OrderItem', foreign_key: :product_id, dependent: :nullify
+  has_many :orders, class_name: 'Cartify::Order', through: :order_items
   accepts_nested_attributes_for :images, allow_destroy: true
 
   validates :title, :price, :description,

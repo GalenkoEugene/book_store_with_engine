@@ -30,7 +30,7 @@ class BooksQuery
     relation.left_outer_joins(orders: [:order_items])
             .includes(:authors)
             .group(:id)
-            .order('SUM(order_items.quantity)')
+            .order('SUM(cartify_order_items.quantity)')
   end
 
   def price_up
