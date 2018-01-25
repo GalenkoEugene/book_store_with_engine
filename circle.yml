@@ -11,7 +11,6 @@ machine:
       SMTP_ADDRESS: 'gmail address'
       SMTP_USER_NAME: 'my name here'
       SMTP_PASSWORD: 'my password here'
-      DEVISE_SECRET_KEY: 'devise secret here'
 
 dependencies:
   pre:

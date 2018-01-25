@@ -145,10 +145,10 @@ RSpec.feature 'Book page', type: :feature do
 
     context "come from 'cart' page" do
       it 'return to cart path', js: true do
-        visit cart_path
-        expect(page.current_path).to eq cart_path
+        visit cartify.cart_path
+        expect(page.current_path).to eq cartify.cart_path
         visit_book_path_and_click_go_back
-        expect(page.current_path).to eq cart_path
+        expect(page.current_path).to eq cartify.cart_path
       end
     end
   end

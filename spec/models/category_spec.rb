@@ -9,7 +9,6 @@ RSpec.describe Category, type: :model do
   describe 'scopes' do
     describe '#with_counted_books' do
       before(:all) do
-        Book.destroy_all
         Category.destroy_all
         FactoryGirl.create_list(:book, 8, category_name: :web)
         FactoryGirl.create_list(:book, 15, category_name: :mobile)

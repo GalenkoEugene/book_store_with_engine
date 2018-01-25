@@ -46,9 +46,9 @@ class ImagesUploader < CarrierWave::Uploader::Base
       model.instance_variable_set(media_filenames, {})
     end
 
-    unless model.instance_variable_get(media_filenames).map{|k,v| k }.include? original_filename.to_sym
+    unless model.instance_variable_get(media_filenames).map { |k, _v| k }.include? original_filename.to_sym
       new_value = model.instance_variable_get(media_filenames)
-        .merge({"#{original_filename}": SecureRandom.uuid})
+                       .merge("#{original_filename}": SecureRandom.uuid)
       model.instance_variable_set(media_filenames, new_value)
     end
 

@@ -10,8 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
-//= require jquery3
+//= require jquery
 //= require bootstrap-sprockets
-//= require jquery.mask
+//= require cartify/application.js
 //= require_tree .

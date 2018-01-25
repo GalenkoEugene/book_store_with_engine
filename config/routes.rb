@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :users, only: %i[update destroy]
   resources :reviews, only: :create
 
+  mount Cartify::Engine, at: '/'
+
   match 'settings/privacy', to: 'users#index', via: 'get'
   match 'settings/privacy', to: 'users#update', via: 'put'
 end

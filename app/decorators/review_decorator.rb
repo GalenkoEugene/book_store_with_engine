@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ReviewDecorator < Draper::Decorator
   delegate_all
 
@@ -39,8 +37,8 @@ class ReviewDecorator < Draper::Decorator
   end
 
   def verified?
-    OrderItem.where(
-      book_id: object.book_id,
+    Cartify::OrderItem.where(
+      product_id: object.book_id,
       order_id: object.user.orders.where_status(:delivered).ids
     ).any?
   end

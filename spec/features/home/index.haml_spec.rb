@@ -45,44 +45,5 @@ RSpec.feature 'Home page', type: :feature do
         expect(quantity).to have_content '1'
       end
     end
-
-    describe 'Best Sellers' do
-      before do
-        @item = FactoryGirl.create(:order_item_with_delivered_book)
-        visit root_path
-      end
-      context 'shopping-cart thumb-icon' do
-        it 'has empty cart' do
-          expect(page).not_to have_css 'span.shop-quantity'
-        end
-
-        it 'add book to shopping cart', js: true do
-          find(:shopping_cart_icon, @item.book.id).click
-          expect(page).to have_css 'span.shop-quantity'
-          expect(quantity).to have_content '1'
-        end
-      end
-
-      context 'details of the item' do
-        it 'has fa-eye thumb-icon' do
-          expect(page).to have_css 'i.fa.fa-eye.thumb-icon'
-        end
-
-        it 'redirect to view page' do
-          find(:linkhref, book_path(@item.book)).click
-          expect(page).to have_http_status(:success)
-          expect(page).not_to have_css 'i.fa.fa-eye.thumb-icon'
-          expect(page).to have_css 'form.new_order_item'
-        end
-
-        it 'redirect to view page' do
-          find(:linkhref, book_path(@item.book)).click
-          expect(page).to have_http_status(:success)
-          expect(page).to have_content I18n.t('button.back_to_results')
-          expect(page).to have_content I18n.t('page.book.show.description')
-          expect(page).to have_content @item.book.title
-        end
-      end
-    end
   end
 end
